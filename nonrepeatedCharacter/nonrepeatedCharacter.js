@@ -7,5 +7,13 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  var current = 0;
+  for(var i = 0; i<string.length; i++){
+  	if(string[current]===string[i]&& i!==current){
+  	    console.log(string[current], string[i], current)
+  		i = 0;
+  		current++;
+  	}
+  }
+  return string[current];
 };
