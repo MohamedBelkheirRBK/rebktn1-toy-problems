@@ -116,14 +116,17 @@ function theList(peopleOnFloors){
       }
     }
 
+  }else
+    countFloorsEmpty++;
+
     if(floor===10){
       direction*=-1;
+      countFloorsEmpty=0;
     }
     floor+= direction;
 
 
 
-  }
 
 
 
