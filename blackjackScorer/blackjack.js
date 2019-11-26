@@ -16,6 +16,7 @@ Examples
 
 function blackJackHand(hand) {
 	var score = 0;
+	var aces = 0;
 	for(card of hand){
 		if(card !== 'A'){
 			if(card === 'K' || card === 'J' || card === 'Q'){
@@ -23,17 +24,14 @@ function blackJackHand(hand) {
 			}else{
 				score += Number(card);
 			}
-		}
+		}else
+			aces++;
 	}
 
-	for(card of hand){
-		if(card === 'A'){
-			if(score+11 <= 21){
-				score+=11;
-			}else{
-				score+=1
-			}
-		}
+	if(score+(aces*11)>21){
+		score+=aces
+	}else{
+		score+= aces*11
 	}
 	return score;
 }
