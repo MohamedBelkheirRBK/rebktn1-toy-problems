@@ -13,3 +13,27 @@ Examples
 ["A", "10", "A"]                ==>  12
 ["5", "3", "7"]                 ==>  15
 ["5", "4", "3", "2", "A", "K"]  ==>  25 */
+
+function blackJackHand(hand) {
+	var score = 0;
+	for(card of hand){
+		if(card !== 'A'){
+			if(card === 'K' || card === 'J' || card === 'Q'){
+				score+=10;
+			}else{
+				score += Number(card);
+			}
+		}
+	}
+
+	for(card of hand){
+		if(card === 'A'){
+			if(score+11 <= 21){
+				score+=11;
+			}else{
+				score+=1
+			}
+		}
+	}
+	return score;
+}
