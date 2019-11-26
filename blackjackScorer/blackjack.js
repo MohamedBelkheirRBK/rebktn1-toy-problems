@@ -28,10 +28,16 @@ function blackJackHand(hand) {
 			aces++;
 	}
 
-	if(score+(aces*11)>21){
-		score+=aces
-	}else{
-		score+= aces*11
+	function getAceScore(){
+		if(score+(aces*11)<=21){
+			score+=aces*11;
+		}else if(score+11+aces-1 <= 21 && aces>0){
+			score+11;
+			aces--;
+			getAceScore();
+		}else;
+		score+=1
 	}
+	getAceScore();
 	return score;
 }
