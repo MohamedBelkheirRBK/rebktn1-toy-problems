@@ -12,21 +12,38 @@
 
 
 
-var commonCharacters = function(string1, string2) {
+
+var commonCharacters = function(string) {
   var found = {};
-  string1 = string1.split('')
-  string2 = string2.split('')
-  
-  for(var char in string1){
-  	if(!found[string1[char]]){
-  		for(var check in string2){
-  			if(string1[char]===string2[check])
-  				found[string1[char]] = 1;
+  var result = "";
+  for(var char in string){
+  	
+  	if(!found[string[char]])
+  		found[string[char]] = 0;
+
+  		if(found[string[char]]<arguments.length){
+  			
+  			for(var i= 1; i<arguments.length; i++){
+  				
+  				for(var c of arguments[i]){
+  					if(string[char]===c)
+  						found[string[char]]++;
+  				}
+
+  			}
   		}
-  	}
+  		
+  	
   		
   
   }
-  return Object.keys(found).join('');
+  for(var letter in found){
+      console.log(found[letter], arguments.length-1)
+  	if(found[letter]===arguments.length-1){
+  	    result+= letter;
 
+  	}
+  		
+  }
+  return result
 };
