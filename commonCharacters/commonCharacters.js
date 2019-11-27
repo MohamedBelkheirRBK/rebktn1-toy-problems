@@ -13,5 +13,20 @@
 
 
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+  var found = {};
+  string1 = string1.split('')
+  string2 = string2.split('')
+  
+  for(var char in string1){
+  	if(!found[string1[char]]){
+  		for(var check in string2){
+  			if(string1[char]===string2[check])
+  				found[string1[char]] = 1;
+  		}
+  	}
+  		
+  
+  }
+  return Object.keys(found).join('');
+
 };
