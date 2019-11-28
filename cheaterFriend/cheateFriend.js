@@ -17,3 +17,25 @@
 //
 // Example:
 // removNb(26) should return [ {15, 21}, {21, 15} ]
+
+function removNb(n) {
+	
+	function sumBetween(a, b){
+		var sum = 0;
+		for(var i =0; i<=n; i++){
+			if(i!=a &&i!=b)
+				sum+=i;
+		}
+		return sum;
+	}
+
+	var results = [];
+
+	for(var i = 1; i<=n; i++){
+		for(var j = 1; j<=n; j++){
+			if(i*j===sumBetween(i, j))
+				results.push([i, j])
+		}	
+	}
+	return results;
+}
