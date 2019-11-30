@@ -41,10 +41,16 @@
 
 var bubbleSort = function(array) {
   var myTree = new binaryTree(array[0])
-
+  var counter = 0;
   for(var i = 1; i<array.length; i++){
+  	if(array[i]<array[i+1])
+  		counter++;
   	myTree.add(array[i])
   };
+
+  //exit early if array is already sorted;
+  if(counter===array.length)
+  	return array;
 
   return myTree.getTree();
 };
