@@ -33,6 +33,53 @@
 // Feel free to add helper functions if needed.
 
 
+//yousef challenged me to solve this in Log(n) so here we are
+//filled the tree into a binary search tree, which took O(n)
+//and retrieved the result which took O(Log n)
+//this ends up being O(n * Log n)
+//which is what complexity chrome has for its own built in sort function
+
 var bubbleSort = function(array) {
-  // Your code here.
+  var myTree = new binaryTree(array[0])
+
+  for(var i = 1; i<array.length; i++){
+  	myTree.add(array[i])
+  };
+
+  return myTree.getTree();
 };
+
+var binaryTree = function(value){
+	this.value = value;
+	this.left = null;
+	this.right = null;
+}
+
+binaryTree.prototype.add = function(value){
+	if(this.value > value){
+		if(this.left===null)
+			this.left = new binaryTree(value);
+		else
+			this.left.add(value)
+	}else {
+		if(this.right===null)
+			this.right = new binaryTree(value);
+		else
+			this.right.add(value)
+		
+	}
+}
+
+binaryTree.prototype.getTree = function() {
+	var result = [];
+	function loop(node){
+		if(node.left!==null)
+			arguments.callee(node.left)
+		result.push(node.value)
+		if(node.right!==null)
+			arguments.callee(node.right)
+	}
+	loop(this)
+	return result;
+}
+
