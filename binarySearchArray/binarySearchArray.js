@@ -11,5 +11,16 @@
  */
 
 var binarySearch = function (array, target) {
-};
+	var check = array[Math.floor(array.length/2)];
+	if(check===target)
+		return true;
+	if(array.length>1){
+		if(check>target)
+			return (binarySearch(array.slice(0, Math.ceil(array.length/2)), target))
+		else
+			return (binarySearch(array.slice(Math.floor(array.length/2)), target))
 
+
+	}
+	return false;
+};
