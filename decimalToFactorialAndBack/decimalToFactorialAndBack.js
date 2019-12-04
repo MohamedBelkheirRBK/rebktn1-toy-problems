@@ -24,12 +24,13 @@
 
 
 function dec2FactString(num) {
-	var result = [];
+	var result = "";
 	var i = 0;
 	while(num>0){
-		result.shift(num%factorial(i))
+		console.log(num, factorial(i))
+		result = (num%factorial(i)) + result;
 		num = Math.floor(num/factorial(i));
-		i--;
+		i++;
 	}
 	return result;
 
