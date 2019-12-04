@@ -25,11 +25,13 @@
 
 function dec2FactString(num) {
 	var result = "";
-	var i = 0;
+	var i = 1;
 	while(num>0){
-		console.log(num, factorial(i))
-		result = (num%factorial(i)) + result;
-		num = Math.floor(num/factorial(i));
+		var adder = num%i;
+		if(adder>10)
+			adder = String.fromCharCode(adder+54)
+		result = adder + result;
+		num = Math.floor(num/i);
 		i++;
 	}
 	return result;
