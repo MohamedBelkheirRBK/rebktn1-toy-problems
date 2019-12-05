@@ -19,6 +19,7 @@ function characterFrequency(string) {
 	for(var i in string){
 		if(!count[string[i]])
 			count[string[i]]=1;
+		else
 		count[string[i]]++
 	}
 
