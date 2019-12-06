@@ -26,10 +26,10 @@ function vowelsBack(string) {
 				string[i] = string[i].charCodeAt(0)-1;
 				break;
 			case 'd':
-				string[i] = string[i].charCodeAt(0)+3;
+				string[i] = string[i].charCodeAt(0)-3;
 				break;
 			case 'e':
-				string[i] = string[i].charCodeAt(0)+4;
+				string[i] = string[i].charCodeAt(0)-4;
 				break;
 			case 'a':
 			case 'i':
@@ -40,17 +40,23 @@ function vowelsBack(string) {
 				string[i] = string[i].charCodeAt(0)+9;
 		}
 		
-		if(string[i]>122)
-			string[i]-=28;
+		if(string[i]>122){
+
+			string[i] = 97+(string[i]-123);
+			
+		}
 		else 
-			if(string[i]<94)
-				string[i] = 122-(94-string[i])
+			if(string[i]<97){
+				string[i] = 122-(97-string[i])
+				
+			}
+
 
 		if(/[code]/.test(String.fromCharCode(string[i])))
 			string[i] = og;
 		else
 			string[i] = String.fromCharCode(string[i])
-		
+
 	}
 	return string.join('')
 
