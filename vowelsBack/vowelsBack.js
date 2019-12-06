@@ -11,3 +11,47 @@
 // If a moved letter becomes 'c', 'o', 'd' or 'e', revert it back to it's original value.
 
 // Provided string will always be lower case, won't be empty and will have no special characters.
+
+
+
+function vowelsBack(string) {
+	string = string.split('');
+
+	for(var i in string) {
+		var og = string[i];
+
+		switch(string[i]){
+			case 'c':
+			case 'o':
+				string[i] = string[i].charCodeAt(0)-1;
+				break;
+			case 'd':
+				string[i] = string[i].charCodeAt(0)+3;
+				break;
+			case 'e':
+				string[i] = string[i].charCodeAt(0)+4;
+				break;
+			case 'a':
+			case 'i':
+			case 'u':
+				string[i] = string[i].charCodeAt(0)-5;
+				break;
+			default:
+				string[i] = string[i].charCodeAt(0)+9;
+		}
+		
+		if(string[i]>122)
+			string[i]-=28;
+		else 
+			if(string[i]<94)
+				string[i] = 122-(94-string[i])
+
+		if(/[code]/.test(String.fromCharCode(string[i])))
+			string[i] = og;
+		else
+			string[i] = String.fromCharCode(string[i])
+		
+	}
+	return string.join('')
+
+}
