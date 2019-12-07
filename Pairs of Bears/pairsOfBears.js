@@ -35,3 +35,8 @@ function pairsOfBears(zoo, mates) {
 	}
 	return [pairs, pairs.length/2===mates]
 }
+
+function pairsOfRegularBears(zoo, mates) {
+	var pairs = zoo.match(/[8B][B8]/g).join('');
+	return [pairs, pairs.length/2===mates]
+}
