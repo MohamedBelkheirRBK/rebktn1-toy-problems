@@ -20,3 +20,18 @@ x will always be a positive integer, and s will never be empty
 
 
 */
+
+function pairsOfBears(zoo, mates) {
+	var pairs = '';
+	for(var i = 0; i<zoo.length; i++) {
+		if(zoo[i]==='B' && zoo[i+1]==='8'){
+			pairs+='B8';
+			i++;
+		}
+		if(zoo[i]==='8' && zoo[i+1]==='B'){
+			pairs+='8B';
+			i++;
+		}
+	}
+	return [pairs, pairs.length/2===mates]
+}
