@@ -36,6 +36,30 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  var levels = [];
+
+  var traverser = (node,depth) => {
+    if(filter(node.value, depth)){
+      if(!levels[depth])
+        levels[depth] = [];
+
+      levels[depth].push(node.value);
+    }
+    if(node.children.length>0)
+      for(var child of node.children){
+        console.log(child.value)
+        traverser(child, depth+1)
+      }
+
+
+
+  }
+  traverser(this, 0);
+
+  levels = levels.reduce((acc,element)=>acc.concat(element))
+
+  return levels;
+
 };
 
 
