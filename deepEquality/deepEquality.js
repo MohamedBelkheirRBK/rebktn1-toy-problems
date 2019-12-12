@@ -13,15 +13,9 @@
   */
 var deepEquals = function(apple, orange) {
   var equal = true;
-  var visited = [];
+
   function deepSearch(node1, node2) {
-    if(node1.visited || node2.visited)
-      throw Error('circular logic');
-    
-    visited.push(node1)
-    visited.push(node2)
-    node1.visited = true;
-    node2.visited = true;
+
     node1 = Object.entries(node1)
     node2 = Object.entries(node2)
 
@@ -57,12 +51,9 @@ var deepEquals = function(apple, orange) {
 
   deepSearch(apple, orange)
   
-  for(var node in visited){
-    delete node.visited
-  }
 
   return equal
 };
-var i = {a:1, b: {c:i}};
-console.log(deepEquals(i,{a:1, b: {c:3}})); // true
+
+console.log(deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}})); // true
 console.log(deepEquals({a:1, b: {c:5}},{a:1, b: {c:6}})); // false
