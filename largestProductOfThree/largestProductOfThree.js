@@ -7,4 +7,19 @@ largestProductOfThree([ 0, 2, 3 ]) //	0
 largestProductOfThree([1, 4, -5, -2]) // 40
 */
 
-function largestProductOfThree(array) {}
+function largestProductOfThree(array) {
+    var biggest;
+    for(var first of array) {
+        for(var second of array) {
+            for(var third of array) {
+                if(!biggest || biggest<first*second*third && (first!==second && second !==third && third!==first))
+                    biggest=first*second*third
+            }
+        }
+    }
+    return biggest
+}
+
+largestProductOfThree([ 2, 1, 3, 7 ]) // 42
+largestProductOfThree([ 0, 2, 3 ]) //	0
+largestProductOfThree([1, 4, -5, -2]) // 40
