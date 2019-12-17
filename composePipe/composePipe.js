@@ -33,18 +33,9 @@
 
 'use strict';
 
-var compose = function(...funcs) {
+var compose = (...funcs) => funcs.reduce((fun1, fun2)=>(parameter)=> fun1(fun2(parameter)));
 
-    var matriochka = (fun1, fun2) => {
-        return (parameter) => {
-            return fun1(fun2(parameter))
-        }
-    }
 
-    return funcs.reduce(matriochka)
-};
+var pipe =(...funcs) => compose(...funcs.reverse());
 
-var pipe = function(...funcs) {
-    return compose(...funcs.reverse())
-};
 
