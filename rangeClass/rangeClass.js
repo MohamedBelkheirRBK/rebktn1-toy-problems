@@ -39,17 +39,45 @@
  */
 
 
-var Range = function(start, end, step) {
+var Range = function(start, end = null, step = 1) {
+    this.start = start;
+    this.end = end;
+    this.step = step;
 };
 
 Range.prototype.size = function () {
+    if(this.end===null)
+        return 1
+    return Math.ceil((this.end/this.step+1 - this.start/this.step))
 };
 
 Range.prototype.each = function (callback) {
+    if (this.end === null)
+        callback(this.start)
+    else
+        for(var i = this.start; i<= this.end; i+= this.step) {
+            callback(i)
+        }
 };
 
 Range.prototype.includes = function (val) {
+    if(this.end === null && val === this.start)
+        return true;
+
+
+    if(this.start <= val && this.end >= val && (((val-this.start)%this.step) === 0 ))
+        return true;
+    
+    return false;
 };
 
 var range = new Range(1);
 
+ var evenNumbers = new Range(2,8,2); // A range with the even numbers 2, 4, 6, and 8.
+ evenNumbers.each(function(val){
+   console.log(val+"!");
+ });
+//  console.log("Who do we appreciate!?");
+
+ console.log(evenNumbers.size())// should be 4
+ console.log(evenNumbers.includes(0))// should be true, evenNumbers.includes(3) should be false
