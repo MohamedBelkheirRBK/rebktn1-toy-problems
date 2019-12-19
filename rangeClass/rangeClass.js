@@ -48,16 +48,25 @@ var Range = function(start, end = null, step = 1) {
 Range.prototype.size = function () {
     if(this.end===null)
         return 1
-    return Math.ceil((this.end/this.step+1 - this.start/this.step))
+    if(this.end > this.start)
+        return Math.ceil((this.end/this.step+1 - this.start/this.step))
+    
+    return Math.ceil((this.start/this.step - this.end/this.step+1))
 };
 
 Range.prototype.each = function (callback) {
-    if (this.end === null)
+    
+    if (this.end === null) {
         callback(this.start)
-    else
+     }else if(this.end > this.start){
         for(var i = this.start; i<= this.end; i+= this.step) {
             callback(i)
         }
+    }else {
+        
+        for(var i = this.start; i>=this.end; i-= this.step){
+            callback(i)
+        }}
 };
 
 Range.prototype.includes = function (val) {
@@ -73,11 +82,11 @@ Range.prototype.includes = function (val) {
 
 var range = new Range(1);
 
- var evenNumbers = new Range(2,8,2); // A range with the even numbers 2, 4, 6, and 8.
+ var evenNumbers = new Range(-10, 4,2); // A range with the even numbers 2, 4, 6, and 8.
  evenNumbers.each(function(val){
-   console.log(val+"!");
+   console.log(val);
  });
 //  console.log("Who do we appreciate!?");
 
- console.log(evenNumbers.size())// should be 4
- console.log(evenNumbers.includes(0))// should be true, evenNumbers.includes(3) should be false
+ console.log(evenNumbers.size(), 'size')// should be 4
+ console.log(evenNumbers.includes(2))// should be true, evenNumbers.includes(3) should be false
