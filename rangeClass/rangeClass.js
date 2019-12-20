@@ -82,7 +82,7 @@ Range.prototype.includes = function (val) {
 
 var range = new Range(1);
 
- var evenNumbers = new Range(-10, 4,2); // A range with the even numbers 2, 4, 6, and 8.
+ var evenNumbers = new Range(-10, 4, 4); // A range with the even numbers 2, 4, 6, and 8.
  evenNumbers.each(function(val){
    console.log(val);
  });
