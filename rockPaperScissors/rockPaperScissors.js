@@ -18,7 +18,29 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function (rounds = 3) {
+    const moves = ["R", "P", "S"];
+    var result = [];
+    var thinking = function(pick, solution = []) {
+
+        if(pick!=undefined){
+            solution.push(moves[pick])
+        }
+
+        if(solution.length === rounds){
+            result.push([...solution]);
+            return;
+        }
+
+        for(var i = 0; i<3; i++){
+            thinking(i, [...solution])
+        }
+
+
+
+    }
+
+    thinking();
+    return result;
 };
+
