@@ -13,5 +13,25 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  var result = [];
+  
+  function thinking(combination) {
+    if (combination.length === string.length){
+      result.push(combination);
+      return ;
+    }
+
+    for(var i = 0; i<string.length; i++){
+      thinking(combination+string[i])
+    }
+
+  }
+
+  thinking("")
+
+  return result
+
 };
+
+var anagrams = allAnagrams('abc');
+console.log(anagrams)
