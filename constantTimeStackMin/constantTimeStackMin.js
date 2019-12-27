@@ -14,27 +14,49 @@
  *  example.min() === 2
  */
 
-/**
-  * Stack Class
-  */
-  var Stack = function() {
 
-  // add an item to the top of the stack
-    this.push = function(value) {
-    };
 
-  // remove an item from the top of the stack
-    this.pop = function() {
-    };
+class Stack {
+  constructor() {
+    this.head = null;
+    this.minsize = null;
+    this.smallbois = [];
+    this.size = 0;
+  }
 
-  // return the number of items in the stack
-    this.size = function() {
-    };
-  
-  // return the minimum value in the stack
-    this.min = function() {
+  push(value) {
+    if(!this.head)
+      this.head = {value, after:null}
+    else {
+      var p = {value, after: this.head};
+      this.head = p;
+    }
 
-    };
+    if(this.minsize === null || this.minsize > value){
+      this.minsize = value
+      this.smallbois[this.smallbois.length] = value;
+    }
 
-  };
+  }
+
+  pop() {
+    var val = this.head.value;
+    this.head = this.head.after;
+    this.size--;
+    if(val === this.minsize){
+      var i = --this.smallbois.length;
+      this.minsize = this.smallbois[i-1]
+    }
+    return val;
+  }
+
+  size() {
+    return this.size;
+  }
+
+  min() {
+    return this.minsize;
+  }
+}
+
 
