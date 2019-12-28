@@ -7,3 +7,23 @@ evenOccurrence([ "cat", "dog", "dig", "cat" ]) // "cat"
 evenOccurrence([[1,2,3], [1,2], [1,2,3]]) // [1,2,3]
 evenOccurrence([{a: 1, b: 2}, {a:1, b:3}, {a:1, b:2}]) // {a:1, b:2}
 */
+
+evenOccurrence = (array) => {
+    var counter = {};
+    array.forEach(item => {
+        item = JSON.stringify(item)
+        
+        if(!counter[item])
+            counter[item] = 0;
+
+        counter[item]++;
+        
+    })
+
+    for(var key in counter) {
+        if (counter[key]%2===0)
+            return JSON.parse(key);
+    }
+
+    return null
+}
