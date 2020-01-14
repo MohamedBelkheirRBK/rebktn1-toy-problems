@@ -15,3 +15,23 @@
 //  [ ] ==>	0
 //  array:
 //  [ [ [ ] ] ] ==>	0
+
+function arrayCeption(array) {
+    var deepend = 0;
+
+    var sleep = (array, depth) => {
+        for(var elm of array) {
+            if(Array.isArray(elm))
+                sleep(elm, depth+1)
+            else if (depth > deepend)
+                deepend = depth;
+        }
+        
+    }
+
+    sleep(array, 1)
+    return deepend;
+}
+
+
+console.log(arrayCeption([ [ 10, 20 ], [ [ 30, [ 40 ] ] ] ]))
