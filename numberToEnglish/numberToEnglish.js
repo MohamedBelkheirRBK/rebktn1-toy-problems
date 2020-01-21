@@ -54,5 +54,43 @@ var numbersToPlace = {
 };
 
 function numberToEnglish(number) {
-  // your code here...
+  var str = (number+"").split("").reverse();
+  var chunks = [];
+  while(str.length){
+    chunks.push(str.splice(0,3))
+  }
+  var result = "";
+  while(chunks.length) {
+    var chunk = chunks.splice(0,1)[0];
+    var power = Math.pow(10, chunks.length+1)
+
+    result += numReader(chunk) + numbersToPlace[power]
+  }
+
+  return result;
 }
+
+function numReader(arr) {
+  console.log(arr)
+  var words = [];
+  var twoDig = false;
+  if (arr[1]=="1"){
+    words.push(numbersToWords[arr[1]+arr[0]]);
+    twoDig = true;
+  } else {
+    words.push(numbersToWords[arr[0]]);
+    arr[1] && words.push(numbersToWords[arr[1]+0])
+  }
+
+  arr[2] && words.push(numbersToWords[arr[2]]+" hundred")
+  
+  var result = "";
+  words[2] && (result += words[2]);
+  (words[1] || (words[0] != "zero")) && (words[2]) && (result += " and "); 
+  words[1] && (result += words[1]+" ");
+  twoDig && (result += "and ")
+  words[0] != "zero" && (result += words[0]);
+
+  return result;
+}
+
