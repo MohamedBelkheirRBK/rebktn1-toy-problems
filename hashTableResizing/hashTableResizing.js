@@ -26,20 +26,49 @@ var makeHashTable = function() {
   var storageLimit = 4;
   var size = 0;
   
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+  result.insert = function(key, val) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    if (!storage[index]) storage[index] = [];
+    storage[index].push([key, val]);
+    size++;
+    if (size >= storageLimit  * (3/4))
+      resize("up");
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    if (!storage[index]) return false;
+    for(var i = 0; i<storage[index].length; i++) {
+      if (storage[index][i][0]===key) return storage[index][i][1] 
+    }
+    return false;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    if (!storage[index]) return false;
+    for(var i = 0; i<storage[index].length; i++) {
+      if (storage[index][i][0]===key){
+        storage[index].splice(i, 1);
+        size--;
+        if(storageLimit > 4 && size <= storageLimit/4) resize("down");
+        return true;
+      } 
+    }
+    return false;
   };
+
+ var resize = (direction) => {
+   var change = direction === "up"? 2 : 0.5;
+    var oldStorage = storage;
+    storage = [];
+    storageLimit *= change;
+    oldStorage.forEach(index=>{
+      index.forEach(tuple=>{
+        result.insert(tuple[0], tuple[1])
+      })
+    })
+  }
 
   return result;
 };
