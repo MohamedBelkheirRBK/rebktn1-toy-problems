@@ -11,5 +11,36 @@ telephoneWords("1123") // [ "11AD", "11AE", "11AF", "11BD", "11BE", "11BF", "11C
 */
 
 function telephoneWords(digitString) {
-  // your code here...
+  keyboard = {
+    0: ["0"],
+    1: ["1"],
+    2: ["a", "b", "c"],
+    3: ["d", "e", "f"],
+    4: ["g", "h", "i"],
+    5: ["j", "k", "l"],
+    6: ["m", "n", "o"],
+    7: ["p", "q", "r", "s"],
+    8: ["t", "u", "v"],
+    9: ["w", "x", "y", "z"],
+  }
+
+  var solutions = [];
+
+  function thinking(digitArr, attempt) {
+    if(!digitArr.length) {
+      solutions.push(attempt);
+      return;
+    }
+    var letter = digitArr[0];
+    choices = keyboard[letter];
+    choices.forEach(fate => {
+      thinking(digitArr.slice(1), attempt+fate)
+    })
+    
+  }
+
+  thinking(digitString.split(""), "");
+  return solutions
 }
+
+console.log(telephoneWords("0002"))
