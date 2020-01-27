@@ -24,9 +24,31 @@ function Node(val) {
   var obj = {};
   obj.value = val || null;
   obj.next = null;
+  obj.add = (val)=>{
+    obj.next = Node(val);
+    return obj.next;
+  }
   return obj;
 }
 
 var hasCycle = function(linkedList) {
-  // your code here...
+  hasIt = false;
+
+  function doesIt(node, ...list) {
+    if(list[node.value] === node){
+      hasIt = true;
+      return
+    }
+    list[node.value] = node;
+    node.next && doesIt(node.next, ...list)
+  }
+
+  doesIt(linkedList, ...[])
+
+  return hasIt;
 };
+
+var myList = Node(5);
+myList.add(4).add(3).add(2);
+
+console.log(hasCycle(myList))
