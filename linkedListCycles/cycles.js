@@ -49,6 +49,24 @@ var hasCycle = function(linkedList) {
 };
 
 var myList = Node(5);
-myList.add(4).add(3).add(2);
+myList.add(4).add(3).add(2).add(3).next = myList;
 
-console.log(hasCycle(myList))
+
+
+//algorithm idea taken from wikipedia 
+function tortoiseAndHare(node) {
+  var tortoise = node;
+  var hare = node;
+  function race() {
+    tortoise = tortoise.next
+    if (!hare.next) return false;
+    hare = hare.next.next
+    if(!hare || !tortoise) return false;
+    if(hare === tortoise) return true
+    return race()
+  }
+  return race();
+}
+
+
+console.log(tortoiseAndHare(myList))
