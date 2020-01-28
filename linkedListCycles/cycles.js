@@ -33,8 +33,9 @@ function Node(val) {
 
 var hasCycle = function(linkedList) {
   hasIt = false;
-
+  var i = 1;
   function doesIt(node, ...list) {
+    console.log(i++)
     if(list[node.value] === node){
       hasIt = true;
       return
@@ -57,7 +58,9 @@ myList.add(4).add(3).add(2).add(3).next = myList;
 function tortoiseAndHare(node) {
   var tortoise = node;
   var hare = node;
+  var i = 1;
   function race() {
+    console.log(i++)
     tortoise = tortoise.next
     if (!hare.next) return false;
     hare = hare.next.next
