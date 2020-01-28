@@ -19,5 +19,25 @@ powerSet("horse") // [ "", "e", "eh", "eho", "ehor", "ehors", "ehos", "ehr", "eh
 */
 
 function powerSet(string) {
-  // your code here...
+  var letters = {};
+  for(var i = 0; i<string.length; i++) letters[string[i]] = true;
+  letters = Object.keys(letters).sort((a, b)=> a.charCodeAt(0) - b.charCodeAt(0));
+
+  var results = [""];
+  
+  for(var letter of letters) {
+    var res = [];
+    for(var r of results) {
+      res.push(letter+r)
+    }
+    results = results.concat(res)
+
+  }
+
+  
+
+  return results.sort((a, b)=> a.charCodeAt(0) - b.charCodeAt(0))
+
 }
+
+console.log(powerSet("obama"))
