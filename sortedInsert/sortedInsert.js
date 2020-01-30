@@ -47,5 +47,49 @@ Stack.prototype.pop = function() {
 };
 
 function sortedInsert(stack, element) {
-  // your code here...
+  var placed = false;
+  var placeHolder = new Stack();
+  while(!placed) {
+    if(stack.peek()>element) {
+      stack.push(element);
+      placed = true;
+    } else {
+      placeHolder.push(stack.pop())
+    }
+  }
+  while(placeHolder.count) {
+    stack.push(placeHolder.pop())
+  }
+  return stack;
 }
+
+
+function printStack(stack) {
+  var a = new Stack();
+  var string = "";
+  while(stack.count){
+    var tmp = stack.pop();
+    string += " " + tmp;
+    a.push(tmp)
+  }
+  while(a.count){
+    stack.push(a.pop())
+  }
+  console.log(string)
+}
+
+var myStack = new Stack(10);
+myStack.push(8);
+myStack.push(7);
+myStack.push(6);
+myStack.push(5);
+myStack.push(4);
+printStack(myStack)
+sortedInsert(myStack,9)
+printStack(myStack)
+sortedInsert(myStack,9)
+printStack(myStack)
+sortedInsert(myStack,1)
+printStack(myStack)
+sortedInsert(myStack,2)
+printStack(myStack)
