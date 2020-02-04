@@ -22,5 +22,20 @@ In other words, find all the possible combinations of coins that sum to a given 
 var coins = [1, 2, 5, 10, 20, 50, 100, 200];
 
 function coinSums(total) {
-  // your code here...
+  var change = [];
+  function calculate(coin, ...pocket) {
+    coin && pocket.push(coin);
+    var tot = pocket.reduce(((a,b)=>a+b), 0);
+    if(tot === total) change.push(pocket);
+    if(tot > total) return;
+    for(var coin of coins) {
+      calculate(coin, ...pocket)
+    }
+  }
+
+  calculate()
+  return change
+
 }
+
+console.log(coinSums(10));
